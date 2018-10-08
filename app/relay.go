@@ -27,11 +27,11 @@ const (
 )
 
 type eostransfer struct {
-	id uint64 `json:"id"`
-	from eos.AccountName `json:"from"`
-	to eos.AccountName `json:"to"`
-	quantity eos.Asset  `json:"quantity"`
-	memo string `json:"memo"`
+	Id uint64 `json:"id"`
+	From eos.AccountName `json:"from"`
+	To eos.AccountName `json:"to"`
+	Quantity eos.Asset  `json:"quantity"`
+	Memo string `json:"memo"`
 }
 
 type sidereqcount struct {
@@ -170,28 +170,28 @@ OUTER:
 		for i, tran := range eostransfers {
 			
 			c.logger.Info("new eos transfer", "new", "xxxxxxx")
-			c.logger.Info("eos transfer", "id", tran.id)
-			c.logger.Info("eos transfer", "from", tran.from)
-			c.logger.Info("eos transfer", "to", tran.to)
-			c.logger.Info("eos transfer", "quantity", tran.quantity.String())
-			c.logger.Info("eos transfer", "memo", tran.memo)
+			c.logger.Info("eos transfer", "id", tran.Id)
+			c.logger.Info("eos transfer", "from", tran.From)
+			c.logger.Info("eos transfer", "to", tran.To)
+			c.logger.Info("eos transfer", "quantity", tran.Quantity.String())
+			c.logger.Info("eos transfer", "memo", tran.Memo)
 			
 			if tran.to != eos.AccountName("pegzone") {
 				continue;
 			}
 			
 			//
-			from_eos := tran.from
+			from_eos := tran.From
 			
 			//
-			to_addr := tran.memo
+			to_addr := tran.Memo
 			to_side, err := sdk.AccAddressFromBech32(to_addr)
 			if err != nil {
 				panic("invalid eos side dest address!")
 			}
 			
 			//
-			coinsStr := tran.quantity.String()
+			coinsStr := tran.Quantity.String()
 			coins, err := sdk.ParseCoins(coinsStr)
 			if err != nil {
 				panic("invalid eos side coins!")
