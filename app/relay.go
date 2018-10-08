@@ -195,7 +195,7 @@ OUTER:
 			
 			//
 			coinsStr := tran.Quantity.String()
-			coinsStr = strings.Replace(coinsStr, " ", "", -1)
+			coinsStr = strings.Replace(coinsStr, ".", "", -1)
 			coins, err := sdk.ParseCoins(coinsStr)
 			if err != nil {
 				c.logger.Info("The coins format is not valid", "error", "ignore")
