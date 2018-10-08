@@ -176,7 +176,7 @@ OUTER:
 			c.logger.Info("eos transfer", "quantity", tran.Quantity.String())
 			c.logger.Info("eos transfer", "memo", tran.Memo)
 			
-			if tran.to != eos.AccountName("pegzone") {
+			if tran.To != eos.AccountName("pegzone") {
 				continue;
 			}
 			
