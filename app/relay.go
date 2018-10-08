@@ -177,6 +177,7 @@ OUTER:
 			c.logger.Info("eos transfer", "memo", tran.Memo)
 			
 			if tran.To != eos.AccountName("pegzone") {
+				c.logger.Info("The To address is not pegzone", "error", "ignore")
 				continue;
 			}
 			
@@ -187,14 +188,17 @@ OUTER:
 			to_addr := tran.Memo
 			to_side, err := sdk.AccAddressFromBech32(to_addr)
 			if err != nil {
-				panic("invalid eos side dest address!")
+				c.logger.Info("The eos side address is not valid", "error", "ignore")
+				continue;
 			}
 			
 			//
 			coinsStr := tran.Quantity.String()
+			coinsStr = strings.Replace(coinsStr, " ", "", -1)
 			coins, err := sdk.ParseCoins(coinsStr)
 			if err != nil {
-				panic("invalid eos side coins!")
+				c.logger.Info("The coins format is not valid", "error", "ignore")
+				continue;
 			}
 			
 			// get the from address
