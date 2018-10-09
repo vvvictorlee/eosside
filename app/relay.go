@@ -36,8 +36,8 @@ type eostransfer struct {
 }
 
 type sidereqcount struct {
-	id uint64 `json:"id"`
-	g_index uint64 `json:"id"`
+	Id uint64 `json:"id"`
+	G_index uint64 `json:"id"`
 }
 
 		
@@ -360,7 +360,7 @@ OUTER:
 		if len(sidereqcounts) == 0 {
 			index = 0
 		} else {
-			index = int64(sidereqcounts[0].g_index)
+			index = int64(sidereqcounts[0].G_index)
 		}
 		
 		//

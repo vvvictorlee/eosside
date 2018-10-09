@@ -49,6 +49,10 @@ func SideTransferCmd(cdc *wire.Codec) *cobra.Command {
 	cmd.MarkFlagRequired(flagEosAccount)
 	viper.BindPFlag(flagEosAccount, cmd.Flags().Lookup(flagEosAccount))
 
+	cmd.Flags().String(flagAmount, "", "transfer amount")
+	cmd.MarkFlagRequired(flagAmount)
+	viper.BindPFlag(flagAmount, cmd.Flags().Lookup(flagAmount))
+	
 	return cmd
 }
 
