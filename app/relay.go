@@ -290,11 +290,11 @@ func (c relayCommander) sideloop(fromChainID, fromChainNode, eosChainNode string
 	mySigner := eos.NewWalletSigner(wallet_api, "default")
 	eos_err := mySigner.ImportPrivateKey("5KM1zpRKMrySAzgitoA3maTeMx12xsGvHdPVgrJXoYsM7hKFKxg")
 	if eos_err != nil {
-		panic(eos_err)
+		//panic(eos_err)
 	}
 	eos_err = mySigner.ImportPrivateKey("5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3")
 	if eos_err != nil {
-		panic(eos_err)
+		//panic(eos_err)
 	}
 	
 	//
