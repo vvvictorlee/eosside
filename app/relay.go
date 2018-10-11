@@ -42,11 +42,11 @@ type sidereqcount struct {
 
 		
 type transferaction struct {
-	from        string
-	to          eos.AccountName
-	quantity    eos.Asset
-	memo        string
-	index       uint64
+	From        string `json:"from"`
+	To          eos.AccountName `json:"to"`
+	Quantity    eos.Asset `json:"quantity"`
+	Memo        string `json:"memo"`
+	Index       uint64 `json:"index"`
 }
 
 type relayCommander struct {
