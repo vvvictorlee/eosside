@@ -415,11 +415,11 @@ OUTER:
 					{Actor: eos.AN("pegzone"), Permission: eos.PN("active")},
 				},
 				ActionData: eos.NewActionData(transferaction{
-					from:     sidetransfer_msg.SrcAddr.String(),
-					to:       eos.AN(sidetransfer_msg.DestAddr),
-					quantity: quantity,
-					memo:     "from eos side",
-					index:    uint64(i),
+					From:     sidetransfer_msg.SrcAddr.String(),
+					To:       eos.AN(sidetransfer_msg.DestAddr),
+					Quantity: quantity,
+					Memo:     "from eos side",
+					Index:    uint64(i),
 				}),
 			}
 			
