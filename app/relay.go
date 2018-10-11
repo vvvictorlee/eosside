@@ -404,6 +404,10 @@ OUTER:
 			}
 						
 			//
+			c.logger.Info("action", "coins", coin_all)
+			c.logger.Info("action", "src", sidetransfer_msg.SrcAddr.String())
+			c.logger.Info("action", "dest", sidetransfer_msg.DestAddr)
+			
 			action := &eos.Action {
 				Account : eos.AN("pegzone"),
 				Name: eos.ActN("transfer"),
