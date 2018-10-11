@@ -360,7 +360,7 @@ OUTER:
 			c.logger.Info("query chain table", "total", len(sidereqcounts))
 			
 			//
-			var index int64
+			//var index int64
 			if len(sidereqcounts) == 0 {
 				index = 0
 			} else {
@@ -391,7 +391,14 @@ OUTER:
 			}
 			
 			//
-			quantity, err := eos.NewAsset(sidetransfer_msg.Coins.String())
+			coins_str := sidetransfer_msg.Coins.String()
+			coin_symbol := coins_str[len(coins_str) - 3 :]
+			coin_amount_1 := coins_str[:len(coins_str) - 3 - 4]
+			
+			coin_all := coin_amount_1 + ".0000 " + coin_symbol
+			c.logger.Info("coin amount", "total", coin_all)
+			
+			quantity, err := eos.NewAsset(coin_all)
 			if err != nil {
 				panic(err)
 			}
