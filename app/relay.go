@@ -286,7 +286,7 @@ func (c relayCommander) sideloop(fromChainID, fromChainNode, eosChainNode string
 	
 	//
 	wallet_api := eos.New("http://127.0.0.1:8900")
-	xx_err := wallet_api.WalletUnlock("default", "PW5J1TYPPsLmsz64AnZ7an5ujbgua1a81qbJpfMdVmefPy9NzJZz2")
+	wallet_api.WalletUnlock("default", "PW5J1TYPPsLmsz64AnZ7an5ujbgua1a81qbJpfMdVmefPy9NzJZz2")
 	mySigner := eos.NewWalletSigner(wallet_api, "default")
 	eos_err := mySigner.ImportPrivateKey("5KM1zpRKMrySAzgitoA3maTeMx12xsGvHdPVgrJXoYsM7hKFKxg")
 	if eos_err != nil {
@@ -332,37 +332,40 @@ OUTER:
 			Table: "sidereqcount",
 		}
 
+		var index int64
 		gettable_response, eos_err := eos_api.GetTableRows(gettable_request)
 		if eos_err != nil {
 			c.logger.Info("eos get table failed", "error", eos_err)
-			panic("eos get table failed")
-		}
-
-		c.logger.Info("eos get table successful", "result", gettable_response.Rows)
-		
-		//
-		var sidereqcounts []*sidereqcount
-		err_json := gettable_response.BinaryToStructs(&sidereqcounts)
-		if err_json != nil {
-			c.logger.Info("eos get table failed", "error", err_json)
-			panic("eos get table failed")
-		}
-
-		/*
-		err_json := c.cdc.UnmarshalJSON(gettable_response.Rows, &transfers)
-		if err_json != nil {
-			panic("eos get table failed")
-		}
-		*/
-		
-		c.logger.Info("query chain table", "total", len(sidereqcounts))
-		
-		//
-		var index int64
-		if len(sidereqcounts) == 0 {
+			//panic("eos get table failed")
 			index = 0
 		} else {
-			index = int64(sidereqcounts[0].G_index)
+
+			c.logger.Info("eos get table successful", "result", gettable_response.Rows)
+			
+			//
+			var sidereqcounts []*sidereqcount
+			err_json := gettable_response.BinaryToStructs(&sidereqcounts)
+			if err_json != nil {
+				c.logger.Info("eos get table failed", "error", err_json)
+				panic("eos get table failed")
+			}
+	
+			/*
+			err_json := c.cdc.UnmarshalJSON(gettable_response.Rows, &transfers)
+			if err_json != nil {
+				panic("eos get table failed")
+			}
+			*/
+			
+			c.logger.Info("query chain table", "total", len(sidereqcounts))
+			
+			//
+			var index int64
+			if len(sidereqcounts) == 0 {
+				index = 0
+			} else {
+				index = int64(sidereqcounts[0].G_index)
+			}
 		}
 		
 		//
