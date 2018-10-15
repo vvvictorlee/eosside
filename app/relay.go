@@ -136,7 +136,7 @@ OUTER:
 		gettable_request := eos.GetTableRowsRequest {
 			Code: "pegzone",
 			Scope: "pegzone",
-			Table: "transferinfo",
+			Table: "eostransfer",
 			LowerBound: strconv.FormatInt(ingressSequence, 10),
 		}
 
